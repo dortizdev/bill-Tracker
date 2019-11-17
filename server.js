@@ -6,7 +6,7 @@ const MongoClient = require('mongodb').MongoClient
 var db, collection;
 
 const url = "mongodb+srv://DanDan10:danoo1@star-wars-quotes-ldrjw.mongodb.net/test?retryWrites=true&w=majority";
-const dbName = "billTracker";
+const dbName = "weightTracker";
 
 app.listen(3000, () => {
     MongoClient.connect(url, { useUnifiedTopology: true }, (error, client) => {
@@ -25,16 +25,16 @@ app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   //console.log(db)
-  db.collection('bills').find().toArray((err, result) => {
+  db.collection('info').find().toArray((err, result) => {
     if (err) return console.log(err)
-    res.render('index.ejs', {choice: result})
+    res.render('index.ejs', {info: result})
   })
 })
 
-app.post('/bills', (req, res) => {
+app.post('/info', (req, res) => {
   // let name = req.choice.name
   // let food = req.choice.food
-  db.collection('bills').save({company: req.body.company, amount: req.body.amount, due: req.body.due}, (err, result) => {
+  db.collection('info').save({weight: req.body.weight, date: req.body.date, notes: req.body.notes}, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
     res.redirect('/')
@@ -58,8 +58,8 @@ app.post('/bills', (req, res) => {
 // })
 
 
-app.delete('/bills', (req, res) => {
-  db.collection('bills').findOneAndDelete({company: req.body.company, amount: req.body.amount, due: req.body.due}, (err, result) => {
+app.delete('/info', (req, res) => {
+  db.collection('info').findOneAndDelete({weight: req.body.weight, date: req.body.date, notes: req.body.notes}, (err, result) => {
     if (err) return res.send(500, err)
     res.send('Message deleted!')
   })

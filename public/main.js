@@ -52,19 +52,19 @@ var trash = document.getElementsByClassName("fa-minus-circle");
 
 Array.from(trash).forEach(function(element) {
       element.addEventListener('click', function(){
-        const company = this.parentNode.parentNode.childNodes[1].innerText
-        const amount = this.parentNode.parentNode.childNodes[3].innerText
-        const due = this.parentNode.parentNode.childNodes[5].innerText
-        console.log(company,amount,due)
-        fetch('bills', {
+        const weight = this.parentNode.parentNode.childNodes[1].innerText
+        const date = this.parentNode.parentNode.childNodes[3].innerText
+        const notes = this.parentNode.parentNode.childNodes[5].innerText
+        console.log(weight,date,notes)
+        fetch('info', {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'company': company,
-            'amount': amount,
-            'due': due
+            'weight': weight,
+            'date': date,
+            'notes': notes
           })
         }).then(function (response) {
           window.location.reload()

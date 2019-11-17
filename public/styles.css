@@ -1,5 +1,5 @@
 body:after{
-  background-image: url("desk.jpeg");
+  background-image: url("scale.jpg");
   background-position: center;
   background-position-y: 0%;
   background-repeat: no-repeat;
@@ -23,6 +23,10 @@ h1{
 h2{
   margin-top: 40px;
   font-size: 2rem;
+}
+
+h3{
+  font-size: 1.5rem;
 }
 
 input{
